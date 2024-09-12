@@ -11,6 +11,10 @@ app.use(express.json());
 
 app.use('/api', router);
 
-app.use(errorHandlers.dbErrorHandler, errorHandlers.errorHandler);
+app.use(
+  errorHandlers.multerErrorHandler,
+  errorHandlers.dbErrorHandler,
+  errorHandlers.errorHandler
+);
 
 module.exports = app;

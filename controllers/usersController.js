@@ -1,8 +1,6 @@
 const createHttpError = require('http-errors');
 const _ = require('lodash');
 const { User } = require('./../db/models');
-const { where } = require('sequelize');
-const { raw } = require('express');
 
 module.exports.createUser = async (req, res, next) => {
   const { body } = req;
