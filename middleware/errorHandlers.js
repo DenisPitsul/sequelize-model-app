@@ -1,4 +1,12 @@
+const multer = require('multer');
 const { ValidationError, BaseError } = require('sequelize');
+
+module.exports.multerErrorHandler = (err, req, res, next) => {
+  if (err instanceof multer.MulterError) {
+    return next(createError(500, 'Multer Error'));
+  }
+  next(err);
+};
 
 module.exports.dbErrorHandler = (err, req, res, next) => {
   if (err instanceof ValidationError) {

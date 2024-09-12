@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { usersController } = require('./../controllers');
-const { paginate } = require('../middleware');
+const { paginate, upload, errorHandlers } = require('../middleware');
 
 const usersRouter = Router();
 
@@ -17,5 +17,13 @@ usersRouter
   .delete(usersController.deleteUserById);
 
 usersRouter.route('/:id/tasks').get(usersController.getUserTasks);
+
+usersRouter
+  .route('/:id/images')
+  .patch(
+    upload.uploadUserPhoto,
+    errorHandlers.multerErrorHandler,
+    usersController.updateUserImage
+  );
 
 module.exports = usersRouter;

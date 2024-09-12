@@ -1,4 +1,4 @@
-const { Task, User } = require('./../models');
+const { Task, User } = require('./../db/models');
 
 module.exports.getTasks = async (req, res, next) => {
   try {
